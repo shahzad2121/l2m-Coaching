@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   motion,
   useScroll,
@@ -45,22 +46,17 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 group"
+            className="flex items-center group"
             aria-label="L2M Coaching Home"
           >
-            <div className="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center ring-2 ring-brand-gold/30 group-hover:ring-brand-gold/60 transition-all duration-300">
-              <span className="font-heading font-semibold text-brand-gold text-sm tracking-wide">
-                L
-              </span>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-heading text-lg font-semibold text-brand-navy tracking-wide">
-                L2M
-              </span>
-              <span className="text-[10px] text-brand-slate font-medium tracking-[0.12em] uppercase">
-                Coaching
-              </span>
-            </div>
+            <Image
+              src="/images/Logo.png"
+              alt="L2M Coaching & Mentoring"
+              width={170}
+              height={80}
+              className="h-24 w-auto object-contain object-left group-hover:opacity-90 transition-opacity duration-300"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
