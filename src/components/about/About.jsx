@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, Target, Lightbulb } from "lucide-react";
 
@@ -46,32 +47,15 @@ export default function About() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="relative lg:sticky lg:top-24 h-fit"
           >
-            {/* Photo placeholder — replace src with real image */}
-            <div className="relative rounded-3xl overflow-hidden aspect-[4/5] bg-brand-cream-deep shadow-premium">
-              {/* Abstract portrait placeholder */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(160deg, oklch(0.955 0.014 88) 0%, oklch(0.90 0.025 85) 100%)",
-                }}
+            {/* Coach photo */}
+            <div className="relative rounded-3xl overflow-hidden aspect-4/5 bg-brand-cream-deep shadow-premium">
+              <Image
+                src="/images/Lloyd-Munyaviri-Coach.png"
+                alt="Lloyd Munyaviri — ICF Certified Coach"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-top"
               />
-              {/* Decorative geometric shapes */}
-              <div
-                className="absolute bottom-0 left-0 right-0 h-3/5"
-                style={{
-                  background:
-                    "linear-gradient(180deg, transparent, oklch(0.17 0.035 264 / 0.06) 100%)",
-                }}
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8">
-                <div className="w-24 h-24 rounded-full bg-brand-gold/20 border-2 border-brand-gold/40 flex items-center justify-center shadow-gold">
-                  <span className="font-heading text-4xl font-light text-brand-gold">LM</span>
-                </div>
-                <p className="text-brand-slate/60 text-xs text-center tracking-widest uppercase">
-                  Photo Coming Soon
-                </p>
-              </div>
 
               {/* Floating accent */}
               <motion.div
@@ -161,7 +145,7 @@ export default function About() {
                     transition={{ delay: i * 0.12 + 0.3, duration: 0.5 }}
                     className="flex gap-4 items-start"
                   >
-                    <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-brand-gold-muted flex items-center justify-center">
+                    <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-gold-muted flex items-center justify-center">
                       <Icon className="w-4 h-4 text-brand-gold" strokeWidth={1.5} />
                     </div>
                     <div>

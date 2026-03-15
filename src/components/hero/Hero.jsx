@@ -190,18 +190,23 @@ export default function Hero() {
           >
             {/* Line 1 */}
             <RevealWord delay={0.48}>Coaching</RevealWord>
-            {" "}
-            <RevealWord delay={0.55}>Leaders,</RevealWord>
-            {" "}
-            <RevealWord delay={0.62}>Parents</RevealWord>
-            {" "}
-            <RevealWord delay={0.69} className="italic text-gradient-gold">
-              &amp; Teens
-            </RevealWord>
 
             <br />
 
             {/* Line 2 */}
+            <RevealWord delay={0.55}>Professionals</RevealWord>
+            {" "}
+            <RevealWord delay={0.62} className="italic text-gradient-gold">
+              &amp;
+            </RevealWord>
+            {" "}
+            <RevealWord delay={0.69} className="italic text-gradient-gold">
+              Managers
+            </RevealWord>
+
+            <br />
+
+            {/* Line 3 */}
             <RevealWord delay={0.76}>to</RevealWord>
             {" "}
             <RevealWord delay={0.82}>Unlock</RevealWord>
@@ -234,9 +239,8 @@ export default function Hero() {
           {/* ── 3. Subheadline — full-block reveal ── */}
           <RevealBlock delay={1.15} className="text-brand-slate text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-14 text-pretty">
             Elevate your growth. Empower your future. Expert coaching and
-            mentoring to help you unlock your full potential — whether you're
-            an individual seeking clarity or a team striving for peak
-            performance.
+            mentoring to help professionals and managers unlock their full
+            potential — whether you&apos;re leading a team or advancing your career.
           </RevealBlock>
 
           {/* ── 4. CTA Group — fade-up as a unit ── */}
