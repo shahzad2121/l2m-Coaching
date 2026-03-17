@@ -60,7 +60,7 @@ export default function ServicesCTA() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-10">
             <motion.a
-              href="mailto:lloyd@l2mcoaching.com"
+              href="mailto:lloydm2m@gmail.com"
               whileHover={{ scale: 1.04, y: -3 }}
               whileTap={{ scale: 0.97 }}
               className="flex items-center gap-3 px-8 py-4 bg-brand-gold text-brand-navy font-semibold rounded-full shadow-gold hover:bg-brand-gold-light transition-all duration-300 text-base"

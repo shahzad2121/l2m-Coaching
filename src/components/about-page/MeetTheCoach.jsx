@@ -127,7 +127,7 @@ export default function MeetTheCoach() {
                 {/* Social / contact */}
                 <div className="flex items-center gap-4">
                   <motion.a
-                    href="mailto:lloyd@l2mcoaching.com"
+                    href="mailto:lloydm2m@gmail.com"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-brand-navy text-brand-cream font-medium rounded-full shadow-premium hover:bg-brand-navy-light transition-all duration-300 text-sm"

@@ -150,7 +150,7 @@ export default function ServicesHero() {
                 </p>
 
                 <motion.a
-                  href="mailto:lloyd@l2mcoaching.com"
+                  href="mailto:lloydm2m@gmail.com"
                   whileHover={{ scale: 1.02, y: -1 }}
                   whileTap={{ scale: 0.97 }}
                   className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 bg-brand-gold text-brand-navy font-semibold rounded-full shadow-gold hover:bg-brand-gold-light transition-all duration-300"

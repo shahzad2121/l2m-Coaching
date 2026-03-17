@@ -33,7 +33,7 @@ export const SERVICES = [
     outcome:
       "By the end of the session you will have clarity on whether coaching is the right step forward.",
     cta: "Book Free Consultation",
-    ctaHref: "mailto:lloyd@l2mcoaching.com",
+    ctaHref: "mailto:lloydm2m@gmail.com",
     tag: "Complimentary",
     image: {
       src: "/images/services/service-1.png",
@@ -74,7 +74,7 @@ export const SERVICES = [
       description: "Topic · Goal · Reality · Options · Will · Time · How · Results",
     },
     cta: "See Prices & Book Service",
-    ctaHref: "mailto:lloyd@l2mcoaching.com",
+    ctaHref: "mailto:lloydm2m@gmail.com",
     tag: "Individual",
     image: {
       src: "/images/services/service-2.jpg",
@@ -111,7 +111,7 @@ export const SERVICES = [
     outcome:
       "Families gain practical tools, stronger communication, and deeper understanding.",
     cta: "See Prices & Book Service",
-    ctaHref: "mailto:lloyd@l2mcoaching.com",
+    ctaHref: "mailto:lloydm2m@gmail.com",
     tag: "Family",
     image: {
       src: "/images/services/service-3.jpeg",
@@ -143,7 +143,7 @@ export const SERVICES = [
       "Performance improvement",
     ],
     cta: "See Prices & Book Service",
-    ctaHref: "mailto:lloyd@l2mcoaching.com",
+    ctaHref: "mailto:lloydm2m@gmail.com",
     tag: "Teams",
     image: {
       src: "/images/services/service-4.jpeg",
@@ -177,7 +177,7 @@ export const SERVICES = [
     outcome:
       "Participants gain practical leadership tools that can be applied immediately in their organisations.",
     cta: "Book Leadership Consultation",
-    ctaHref: "mailto:lloyd@l2mcoaching.com",
+    ctaHref: "mailto:lloydm2m@gmail.com",
     tag: "Leadership",
     image: {
       src: "/images/services/service-5.jpg",

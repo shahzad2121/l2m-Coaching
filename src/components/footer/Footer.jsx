@@ -127,19 +127,19 @@ export default function Footer() {
 
             <div className="space-y-4 mb-8">
               <a
-                href="mailto:lloyd@l2mcoaching.com"
+                href="mailto:lloydm2m@gmail.com"
                 className="flex items-start gap-3 text-white/50 hover:text-white transition-colors duration-200 group"
               >
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-brand-gold/70" />
-                <span className="text-sm">lloyd@l2mcoaching.com</span>
+                <span className="text-sm">lloydm2m@gmail.com</span>
               </a>
 
               <a
-                href="tel:+441234567890"
+                href="tel:+447900105099"
                 className="flex items-start gap-3 text-white/50 hover:text-white transition-colors duration-200"
               >
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-brand-gold/70" />
-                <span className="text-sm">+44 (0) 7000 000 000</span>
+                <span className="text-sm">+44 7900 105099</span>
               </a>
             </div>
 

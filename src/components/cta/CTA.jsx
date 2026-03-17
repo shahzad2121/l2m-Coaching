@@ -74,7 +74,7 @@ export default function CTA() {
               </BookingButton>
 
               <motion.a
-                href="mailto:lloyd@l2mcoaching.com"
+                href="mailto:lloydm2m@gmail.com"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-3 px-6 py-4 border border-white/25 text-white/80 font-medium rounded-full hover:border-white/50 hover:text-white transition-all duration-300 text-base"
