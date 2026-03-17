@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import BookingButton from "@/components/calendly/BookingButton";
 
 /* ─────────────────────────────────────────────
    Text Reveal Primitives
@@ -247,18 +248,12 @@ export default function Hero() {
           <RevealBlock delay={1.32}>
             <div className="flex flex-col items-center gap-5">
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <motion.a
-                  href="#contact"
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-brand-navy text-brand-cream text-base font-medium rounded-full shadow-premium hover:bg-brand-navy-light transition-all duration-300"
-                >
+                <BookingButton variant="primary" size="lg">
                   Book a Complimentary Coaching Conversation
-                  <span className="text-brand-gold">→</span>
-                </motion.a>
+                </BookingButton>
 
                 <motion.a
-                  href="#services"
+                  href="/services"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="inline-flex items-center gap-2 px-6 py-4 border border-border text-brand-navy text-base font-medium rounded-full hover:border-brand-navy transition-all duration-300"

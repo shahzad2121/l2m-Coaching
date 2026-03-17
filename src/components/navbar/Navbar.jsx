@@ -10,6 +10,7 @@ import {
   useMotionTemplate,
   AnimatePresence,
 } from "framer-motion";
+import BookingButton from "@/components/calendly/BookingButton";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -76,14 +77,9 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-navy text-brand-cream text-sm font-medium rounded-full hover:bg-brand-navy-light transition-all duration-300 shadow-soft hover:shadow-premium"
-            >
+            <BookingButton variant="primary" size="sm">
               Book a Call
-            </motion.a>
+            </BookingButton>
           </div>
 
           {/* Mobile Hamburger */}
@@ -146,14 +142,11 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.3 }}
                   className="mt-6"
+                  onClick={() => setMobileOpen(false)}
                 >
-                  <a
-                    href="#contact"
-                    onClick={() => setMobileOpen(false)}
-                    className="block w-full py-3.5 bg-brand-navy text-brand-cream text-sm font-medium rounded-full text-center"
-                  >
+                  <BookingButton variant="primary" size="md" fullWidth>
                     Book a Complimentary Call
-                  </a>
+                  </BookingButton>
                 </motion.div>
               </nav>
             </motion.div>

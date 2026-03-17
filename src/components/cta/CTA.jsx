@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, MessageSquare } from "lucide-react";
+import { MessageSquare } from "lucide-react";
+import BookingButton from "@/components/calendly/BookingButton";
 
 export default function CTA() {
   return (
@@ -68,15 +69,9 @@ export default function CTA() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-8">
-              <motion.a
-                href="mailto:lloyd@l2mcoaching.com"
-                whileHover={{ scale: 1.04, y: -3 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-3 px-8 py-4 bg-brand-gold text-brand-navy font-semibold rounded-full shadow-gold hover:bg-brand-gold-light transition-all duration-300 text-base"
-              >
-                <Calendar className="w-5 h-5" />
+              <BookingButton variant="gold" size="lg">
                 Book a Complimentary Coaching Conversation
-              </motion.a>
+              </BookingButton>
 
               <motion.a
                 href="mailto:lloyd@l2mcoaching.com"
