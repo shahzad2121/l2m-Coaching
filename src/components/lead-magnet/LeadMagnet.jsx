@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Download, CheckCircle, ArrowRight, BookOpen } from "lucide-react";
 
 const guidePoints = [
@@ -50,7 +51,7 @@ export default function LeadMagnet() {
       />
 
       <div className="section-container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center">
           {/* Left: Guide preview */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -58,24 +59,32 @@ export default function LeadMagnet() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Book/Guide visual */}
+            {/* Image hero preview (text over image) */}
             <motion.div
               whileHover={{ rotate: -1, scale: 1.02 }}
               transition={{ duration: 0.4 }}
-              className="relative inline-block mb-10 w-full max-w-sm"
+              className="relative inline-block mb-10 w-full max-w-md lg:max-w-lg"
             >
-              <div className="bg-brand-navy rounded-3xl p-8 shadow-premium relative overflow-hidden">
-                {/* Inner glow */}
-                <div
-                  className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, oklch(0.72 0.12 79) 0%, transparent 70%)",
-                  }}
-                />
-                <div className="relative z-10">
+              <div className="relative rounded-3xl overflow-hidden border border-border shadow-premium bg-brand-navy">
+                {/* Image */}
+                <div className="relative h-[500px] w-full sm:h-[590px]">
+                  <Image
+                    src="/images/book-reading.png"
+                    alt="Lloyd reading a book"
+                    fill
+                    sizes="(max-width: 640px) 100vw, 400px"
+                    className="object-contain object-top"
+                    priority
+                  />
+
+                  {/* Bottom gradient for readable overlay */}
+                  <div className="absolute inset-0 bg-linear-to-t from-brand-navy/95 via-brand-navy/70 to-transparent" />
+                </div>
+
+                {/* Overlay content */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end z-10">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-brand-gold/20 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-brand-gold/20 flex items-center justify-center border border-white/10">
                       <BookOpen className="w-5 h-5 text-brand-gold" strokeWidth={1.5} />
                     </div>
                     <span className="text-brand-gold text-xs font-medium tracking-[0.2em] uppercase">
@@ -88,7 +97,7 @@ export default function LeadMagnet() {
                     <span className="italic text-gradient-gold">Your Team</span>
                   </h3>
 
-                  <div className="space-y-3">
+                  <div className="space-y-3 mb-8">
                     {guidePoints.map((point, i) => (
                       <motion.div
                         key={i}
@@ -98,7 +107,7 @@ export default function LeadMagnet() {
                         transition={{ delay: i * 0.08 + 0.3 }}
                         className="flex items-start gap-3"
                       >
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-gold/20 border border-brand-gold/40 flex items-center justify-center mt-0.5">
+                        <span className="shrink-0 w-5 h-5 rounded-full bg-brand-gold/20 border border-brand-gold/40 flex items-center justify-center mt-0.5">
                           <span className="text-brand-gold text-[10px] font-semibold">
                             {i + 1}
                           </span>
@@ -110,7 +119,7 @@ export default function LeadMagnet() {
                     ))}
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-3">
+                  <div className="pt-6 border-t border-white/10 flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-brand-gold/20 border border-brand-gold/30 flex items-center justify-center">
                       <span className="font-heading text-brand-gold text-sm font-semibold">L</span>
                     </div>
@@ -121,9 +130,6 @@ export default function LeadMagnet() {
                   </div>
                 </div>
               </div>
-
-              {/* Shadow beneath */}
-              <div className="absolute -bottom-3 left-4 right-4 h-6 bg-brand-navy/20 blur-xl rounded-full" />
             </motion.div>
           </motion.div>
 

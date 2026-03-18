@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Award, Users, Clock, Star, BookOpen, Globe } from "lucide-react";
 
@@ -66,7 +67,7 @@ const cardVariants = {
 
 export default function Trust() {
   return (
-    <section id="trust" className="py-24 lg:py-36 bg-brand-cream-deep relative overflow-hidden">
+    <section id="trust" className="py-24 lg:py-36 bg-brand-cream-deep relative">
       {/* Subtle background accent */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
@@ -76,7 +77,7 @@ export default function Trust() {
         }}
       />
 
-      <div className="section-container">
+      <div className="px-4 lg:px-24">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -106,45 +107,76 @@ export default function Trust() {
           </p>
         </motion.div>
 
-        {/* Credential cards */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {credentials.map((cred) => {
-            const Icon = cred.icon;
-            return (
-              <motion.div
-                key={cred.title}
-                variants={cardVariants}
-                whileHover={{ y: -5, transition: { duration: 0.3 } }}
-                className="group bg-white rounded-2xl p-8 border border-border shadow-soft hover:shadow-premium transition-shadow duration-300 cursor-default"
-              >
-                {/* Icon */}
-                <div className="w-12 h-12 rounded-xl bg-brand-gold-muted flex items-center justify-center mb-6 group-hover:bg-brand-gold/20 transition-colors duration-300">
-                  <Icon className="w-5 h-5 text-brand-gold" strokeWidth={1.5} />
-                </div>
+        {/* Content layout: sticky image left + staggered cards right */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-13 items-start">
+          {/* Sticky landscape certificate image (left) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:sticky lg:top-32 h-fit"
+          >
+            <div className="relative rounded-3xl overflow-hidden border border-border shadow-premium bg-white">
+              {/* Fixed height so the landscape certificate fully covers the sticky panel */}
+              <div className="h-[360px] sm:h-[460px] lg:h-[550px] relative">
+                <Image
+                  src="/images/client-handing-certificate.png"
+                  alt="Client handing over a certificate to Lloyd Munyaviri"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 520px"
+                  className="object-cover object-center"
+                  priority
+                />
+              </div>
+              {/* Subtle frame highlight */}
+              <div
+                className="pointer-events-none absolute -bottom-4 -right-4 w-full h-full rounded-3xl -z-10 border-2 border-brand-gold/20"
+                aria-hidden="true"
+              />
+            </div>
+          </motion.div>
 
-                {/* Gold divider */}
-                <div className="gold-divider mb-5" />
+          {/* Right: credentials grid with stagger */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+          >
+            {credentials.map((cred) => {
+              const Icon = cred.icon;
+              return (
+                <motion.div
+                  key={cred.title}
+                  variants={cardVariants}
+                  whileHover={{ y: -5, transition: { duration: 0.3 } }}
+                  className="group bg-white rounded-2xl p-8 border border-border shadow-soft hover:shadow-premium transition-shadow duration-300 cursor-default flex flex-col h-full min-h-[250px]"
+                >
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-brand-gold-muted flex items-center justify-center mb-6 group-hover:bg-brand-gold/20 transition-colors duration-300">
+                    <Icon className="w-5 h-5 text-brand-gold" strokeWidth={1.5} />
+                  </div>
 
-                {/* Text */}
-                <h3 className="font-heading text-2xl font-semibold text-brand-navy mb-1">
-                  {cred.title}
-                </h3>
-                <p className="text-brand-gold text-xs font-medium tracking-[0.15em] uppercase mb-4">
-                  {cred.subtitle}
-                </p>
-                <p className="text-brand-slate text-sm leading-relaxed">
-                  {cred.description}
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                  {/* Gold divider */}
+                  <div className="gold-divider mb-5" />
+
+                  {/* Text */}
+                  <h3 className="font-heading text-2xl font-semibold text-brand-navy mb-1">
+                    {cred.title}
+                  </h3>
+                  <p className="text-brand-gold text-xs font-medium tracking-[0.15em] uppercase mb-4">
+                    {cred.subtitle}
+                  </p>
+                  <p className="text-brand-slate text-sm leading-relaxed grow">
+                    {cred.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
 
         {/* Bottom logos/badges strip */}
         <motion.div

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
@@ -39,6 +40,13 @@ export default function Testimonials() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-60px", "60px"]);
 
   const next = useCallback(() => {
     setDirection(1);
@@ -89,15 +97,35 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
+      ref={sectionRef}
       className="py-24 lg:py-36 bg-navy-section relative overflow-hidden"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Parallax background decoration */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <motion.div
+          style={{ y: bgY }}
+          className="absolute inset-0"
+          aria-hidden="true"
+        >
+          <Image
+            src="/images/client.png"
+            alt=""
+            fill
+            sizes="(max-width: 1024px) 100vw, 1600px"
+            className="object-cover opacity-80 blur-[1px]"
+            priority={false}
+          />
+        </motion.div>
+
+        {/* Dark overlay to keep text readable */}
+        <div className="absolute inset-0 bg-brand-navy/75" />
+
+        {/* Subtle accent blob */}
         <div
-          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-20"
+          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-50"
           style={{
             background:
-              "radial-gradient(circle at center, oklch(0.72 0.12 79 / 0.15) 0%, transparent 70%)",
+              "radial-gradient(circle at center, oklch(0.72 0.12 79 / 0.18) 0%, transparent 70%)",
           }}
         />
       </div>

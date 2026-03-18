@@ -2,15 +2,37 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { GraduationCap, Award, Clock, Briefcase } from "lucide-react";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
 const credentials = [
-  { icon: Briefcase, label: "Head of Manufacturing", sub: "Brompton Bicycle" },
-  { icon: Award,     label: "EMCC Senior Practitioner", sub: "European Mentoring & Coaching Council" },
-  { icon: Award,     label: "Chartered Manager (CMgr FCMI)", sub: "Chartered Management Institute" },
-  { icon: Award,     label: "Fellow — ILM (FInstLM)", sub: "Institute of Leadership & Management" },
-  { icon: GraduationCap, label: "MA, MBA, BA", sub: "Academic Qualifications" },
-  { icon: Clock,     label: "1800+ Coaching Hours", sub: "Delivered to date" },
+  { label: "EMCC Senior Practitioner", sub: "European Mentoring & Coaching Council" },
+  { label: "Chartered Manager · CMgr FCMI", sub: "Chartered Management Institute" },
+  { label: "Fellow · ILM (FInstLM)", sub: "Institute of Leadership & Management" },
+  { label: "Head of Manufacturing", sub: "Brompton Bicycle" },
+  { label: "MA · MBA · BA", sub: "Academic Qualifications" },
+];
+
+const slides = [
+  {
+    src: "/images/client-handing-certificate.png",
+    alt: "Client receiving certificate",
+    caption: "Client success",
+  },
+  {
+    src: "/images/book-reading.png",
+    alt: "Lloyd reading — continuous learning",
+    caption: "Continuous learning",
+  },
+  {
+    src: "/images/client.png",
+    alt: "Lloyd Munyaviri — Executive Coach",
+    caption: "Lloyd Munyaviri",
+  },
 ];
 
 const story = [
@@ -22,8 +44,11 @@ const story = [
 
 export default function FounderStory() {
   return (
-    <section id="founder" className="py-24 lg:py-36 bg-brand-cream-deep relative overflow-hidden">
-      {/* Decorative */}
+    <section
+      id="founder"
+      className="py-16 sm:py-20 lg:py-36 bg-brand-cream-deep relative"
+    >
+      {/* Decorative dot grid */}
       <div
         className="absolute inset-0 opacity-25 pointer-events-none"
         style={{
@@ -39,7 +64,7 @@ export default function FounderStory() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <div className="flex items-center justify-center gap-3 mb-5">
             <span className="h-px w-8 bg-brand-gold" />
@@ -57,74 +82,78 @@ export default function FounderStory() {
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          {/* Left: Photo + credentials */}
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-24 items-start">
+          {/* ── LEFT: Slider + credentials ── */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:sticky lg:top-28 xl:top-36 self-start w-full min-w-0"
           >
-            {/* Photo */}
-            <div className="relative rounded-3xl overflow-hidden aspect-4/5 bg-brand-navy shadow-premium mb-10">
-              <Image
-                src="/images/Lloyd-Munyaviri-Coach.png"
-                alt="Lloyd Munyaviri — Founder of L2M Coaching"
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover object-top"
-              />
-
-              {/* Floating badge */}
-              <motion.div
-                animate={{ y: [0, -7, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-6 right-6 bg-white rounded-2xl px-4 py-3 shadow-soft"
+            {/* Slider wrapper using padding-bottom trick for reliable height */}
+            <div className="founder-slider-wrap rounded-2xl overflow-hidden shadow-premium">
+              <Swiper
+                modules={[Autoplay, Pagination, EffectFade]}
+                effect="fade"
+                fadeEffect={{ crossFade: true }}
+                loop
+                autoplay={{ delay: 3500, disableOnInteraction: false }}
+                pagination={{ clickable: true }}
+                speed={700}
+                className="founder-swiper"
               >
-                <p className="text-brand-navy font-heading text-2xl font-semibold">1800+</p>
-                <p className="text-brand-slate text-xs">Coaching Hours</p>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                className="absolute bottom-8 left-6 bg-brand-navy rounded-2xl px-4 py-3 shadow-premium border border-white/10"
-              >
-                <p className="text-brand-gold font-heading text-xl font-semibold">EMCC</p>
-                <p className="text-white/65 text-xs">Senior Practitioner</p>
-              </motion.div>
-
-              {/* Gold border accent */}
-              <div className="absolute -bottom-3 -right-3 w-full h-full rounded-3xl -z-10 border-2 border-brand-gold/20 pointer-events-none" />
+                {slides.map((slide) => (
+                  <SwiperSlide key={slide.src} className="founder-slide">
+                    <div className="founder-slide-inner">
+                      <Image
+                        src={slide.src}
+                        alt={slide.alt}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 48vw"
+                        className="object-cover object-center"
+                        priority
+                      />
+                      {/* Bottom gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/70 via-transparent to-transparent pointer-events-none" />
+                      {/* Caption */}
+                      <p className="absolute bottom-4 left-5 text-white/70 text-[10px] sm:text-xs tracking-[0.12em] uppercase z-10">
+                        {slide.caption}
+                      </p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
 
-            {/* Credentials grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {credentials.map((c, i) => {
-                const Icon = c.icon;
-                return (
-                  <motion.div
-                    key={c.label}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex items-start gap-3 bg-white rounded-xl p-4 border border-border shadow-soft"
-                  >
-                    <div className="shrink-0 w-8 h-8 rounded-lg bg-brand-gold-muted flex items-center justify-center">
-                      <Icon className="w-3.5 h-3.5 text-brand-gold" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className="text-brand-navy text-xs font-semibold leading-snug">{c.label}</p>
-                      <p className="text-brand-slate/70 text-xs mt-0.5">{c.sub}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
+            {/* Credential dot list */}
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-8">
+              {credentials.map((c, i) => (
+                <motion.div
+                  key={c.label}
+                  initial={{ opacity: 0, x: -12 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: i * 0.07 + 0.1,
+                    duration: 0.5,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="flex items-start gap-3 py-3 border-b border-border"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0 mt-[5px]" />
+                  <div>
+                    <p className="text-brand-navy text-sm font-medium leading-snug">
+                      {c.label}
+                    </p>
+                    <p className="text-brand-slate/60 text-xs mt-0.5">{c.sub}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
-          {/* Right: Story */}
+          {/* ── RIGHT: Story ── */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -156,7 +185,11 @@ export default function FounderStory() {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 + 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    delay: i * 0.1 + 0.2,
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 >
                   {para}
                 </motion.p>
@@ -175,6 +208,97 @@ export default function FounderStory() {
           </motion.div>
         </div>
       </div>
+
+      <style jsx global>{`
+        /*
+          ROOT CAUSE FIX:
+          Swiper with EffectFade makes all slides position:absolute, so the
+          swiper container collapses to 0 height — taking the image with it.
+          The padding-bottom trick is the only reliable cross-browser fix:
+          set height:0 + padding-bottom on the swiper, then make all internal
+          elements position:absolute to fill that space.
+        */
+
+        .founder-slider-wrap {
+          position: relative;
+          width: 100%;
+        }
+
+        /* 4:3 on mobile */
+        .founder-swiper {
+          position: relative !important;
+          width: 100% !important;
+          height: 0 !important;
+          padding-bottom: 75% !important; /* 4:3 ratio */
+          overflow: hidden !important;
+        }
+
+        /* 16:9 from sm (640px) upward */
+        @media (min-width: 640px) {
+          .founder-swiper {
+            padding-bottom: 56.25% !important; /* 16:9 ratio */
+          }
+        }
+
+        /* All swiper internals must be absolute to fill the padded space */
+        .founder-swiper .swiper-wrapper {
+          position: absolute !important;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .founder-slide,
+        .founder-swiper .swiper-slide {
+          position: absolute !important;
+          top: 0;
+          left: 0;
+          width: 100% !important;
+          height: 100% !important;
+        }
+
+        .founder-slide-inner {
+          position: absolute;
+          inset: 0;
+          background: #0d1b3e;
+        }
+
+        /* Pagination */
+        .founder-swiper .swiper-pagination {
+          position: absolute;
+          bottom: 14px;
+          right: 16px;
+          left: auto;
+          width: auto;
+          display: flex;
+          gap: 5px;
+          align-items: center;
+          z-index: 20;
+        }
+
+        .founder-swiper .swiper-pagination-bullet {
+          background: rgba(255, 255, 255, 0.45);
+          opacity: 1;
+          width: 6px;
+          height: 6px;
+          margin: 0 !important;
+          border-radius: 3px;
+          transition: all 0.3s ease;
+        }
+
+        .founder-swiper .swiper-pagination-bullet-active {
+          background: #c9a84c;
+          width: 18px;
+        }
+
+        @media (max-width: 640px) {
+          .founder-swiper .swiper-pagination {
+            bottom: 10px;
+            right: 12px;
+          }
+        }
+      `}</style>
     </section>
   );
 }
