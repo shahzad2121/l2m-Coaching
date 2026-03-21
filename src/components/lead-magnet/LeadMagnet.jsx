@@ -21,11 +21,39 @@ export default function LeadMagnet() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
+  
     setLoading(true);
-    // Simulate async submission
-    await new Promise((r) => setTimeout(r, 1200));
+  
+    try {
+      const response = await fetch(
+        `https://api.convertkit.com/v3/forms/${process.env.NEXT_PUBLIC_KIT_FORM_ID}/subscribe`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            api_key: process.env.NEXT_PUBLIC_KIT_API_KEY,
+            email: email,
+          }),
+        }
+      );
+  
+      const data = await response.json();
+      console.log("ConvertKit response:", data);
+  
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        console.error("Error:", data);
+        alert("Something went wrong. Try again.");
+      }
+    } catch (error) {
+      console.error("Submit error:", error);
+      alert("Network error. Try again.");
+    }
+  
     setLoading(false);
-    setSubmitted(true);
   };
 
   return (

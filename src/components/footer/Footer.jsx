@@ -5,12 +5,12 @@ import Link from "next/link";
 import { Mail, Phone, Linkedin, Twitter, Instagram, ArrowUpRight } from "lucide-react";
 
 const navLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#about", label: "About Lloyd" },
-  { href: "#testimonials", label: "Testimonials" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About Lloyd" },
+  { href: "/testimonials", label: "Testimonials" },
+  { href: "/blog", label: "Blog" },
   { href: "#process", label: "The Process" },
-  { href: "#guide", label: "Free Guide" },
-  { href: "#contact", label: "Book a Call" },
+  { href: "/contact", label: "Book a Call" },
 ];
 
 const socialLinks = [
@@ -144,7 +144,7 @@ export default function Footer() {
             </div>
 
             <motion.a
-              href="#contact"
+              href="/contact"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-5 py-2.5 border border-brand-gold/40 text-brand-gold text-sm font-medium rounded-full hover:bg-brand-gold/10 transition-all duration-200"
