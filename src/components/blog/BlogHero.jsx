@@ -46,15 +46,15 @@ export default function BlogHero() {
         }}
       />
 
-      <div className="section-container relative z-10">
+      <div className="section-container pt-5 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl"
+          className="max-w-3xl mx-auto text-center"
         >
           {/* Eyebrow */}
-          <motion.div variants={itemUp} className="flex items-center gap-3 mb-7">
+          <motion.div variants={itemUp} className="flex items-center justify-center gap-3 mb-7">
             <motion.span
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: 36, opacity: 1 }}
@@ -64,22 +64,24 @@ export default function BlogHero() {
             <span className="text-brand-gold font-medium text-sm tracking-[0.22em] uppercase">
               Insights & Perspectives
             </span>
+            <span className="h-px w-9 bg-brand-gold shrink-0" />
           </motion.div>
 
           {/* Headline */}
           <motion.h1
             variants={itemUp}
-            className="font-heading font-light text-brand-navy leading-[1.1] tracking-tight mb-6"
+            className="font-heading font-light text-brand-navy leading-[1.1] tracking-tight mb-6 text-balance"
             style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.8rem)" }}
           >
             Clarity Starts with{" "}
+            <br />
             <span className="italic text-gradient-gold">Understanding</span>
           </motion.h1>
 
           {/* Subtext */}
           <motion.p
             variants={itemUp}
-            className="text-brand-slate text-lg md:text-xl leading-relaxed max-w-xl text-pretty"
+            className="text-brand-slate text-lg md:text-xl leading-relaxed max-w-xl mx-auto text-pretty"
           >
             Practical perspectives on leadership, coaching, and the inner work
             of becoming who you&apos;re capable of being — written for
