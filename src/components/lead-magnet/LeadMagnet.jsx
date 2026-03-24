@@ -24,12 +24,6 @@ export default function LeadMagnet() {
 
     setLoading(true);
 
-    // Placeholder: no backend — simulates success for local/dev. Uncomment ConvertKit block below when ready.
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    setSubmitted(true);
-    setLoading(false);
-
-    /*
     try {
       const response = await fetch(
         `https://api.convertkit.com/v3/forms/${process.env.NEXT_PUBLIC_KIT_FORM_ID}/subscribe`,
@@ -46,21 +40,19 @@ export default function LeadMagnet() {
       );
 
       const data = await response.json();
-      console.log("ConvertKit response:", data);
 
       if (response.ok) {
         setSubmitted(true);
       } else {
-        console.error("Error:", data);
+        console.error("ConvertKit error:", data);
         alert("Something went wrong. Try again.");
       }
     } catch (error) {
       console.error("Submit error:", error);
       alert("Network error. Try again.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
-    */
   };
 
   return (
