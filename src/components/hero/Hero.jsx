@@ -190,58 +190,27 @@ export default function Hero() {
             style={{ fontSize: "clamp(2.8rem, 6.5vw, 5.4rem)" }}
           >
             {/* Line 1 */}
-            <RevealWord delay={0.48}>Coaching</RevealWord>
+            <RevealWord delay={0.48}>Master</RevealWord>{" "}
+            <RevealWord delay={0.55}>the</RevealWord>{" "}
+            <RevealWord delay={0.62}>Pressure.</RevealWord>
 
             <br />
 
             {/* Line 2 */}
-            <RevealWord delay={0.55}>Professionals</RevealWord>
-            {" "}
-            <RevealWord delay={0.62} className="italic text-gradient-gold">
-              &amp;
+            <RevealWord delay={0.69}>Lead</RevealWord>{" "}
+            <RevealWord delay={0.76}>with</RevealWord>{" "}
+            <RevealWord delay={0.83} className="italic text-gradient-gold">
+              Impact.
             </RevealWord>
-            {" "}
-            <RevealWord delay={0.69} className="italic text-gradient-gold">
-              Managers
-            </RevealWord>
-
-            <br />
-
-            {/* Line 3 */}
-            <RevealWord delay={0.76}>to</RevealWord>
-            {" "}
-            <RevealWord delay={0.82}>Unlock</RevealWord>
-            {" "}
-            {/* "Confidence," with animated underline spawning after word reveals */}
-            <span className="relative inline-block overflow-hidden"
-              style={{ paddingBottom: "0.1em", marginBottom: "-0.1em", verticalAlign: "bottom" }}
-            >
-              <motion.span
-                className="inline-block"
-                initial={{ y: "115%", opacity: 0, skewY: 4 }}
-                animate={{ y: "0%", opacity: 1, skewY: 0 }}
-                transition={{ delay: 0.88, duration: 0.78, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Confidence,
-              </motion.span>
-              <motion.span
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 1.55, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-brand-gold origin-left"
-              />
-            </span>
-            {" "}
-            <RevealWord delay={0.96}>Clarity</RevealWord>
-            {" "}
-            <RevealWord delay={1.03}>&amp; Connection.</RevealWord>
           </h1>
 
           {/* ── 3. Subheadline — full-block reveal ── */}
-          <RevealBlock delay={1.15} className="text-brand-slate text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-14 text-pretty">
-            Elevate your growth. Empower your future. Expert coaching and
-            mentoring to help professionals and managers unlock their full
-            potential — whether you&apos;re leading a team or advancing your career.
+          <RevealBlock
+            delay={1.0}
+            className="text-brand-slate text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-14 text-pretty"
+          >
+            I help leaders and professionals perform at their peak by aligning strengths,
+            emotions, and behaviors—ensuring you stay effective when it matters most.
           </RevealBlock>
 
           {/* ── 4. CTA Group — fade-up as a unit ── */}
@@ -283,9 +252,9 @@ export default function Hero() {
         >
           {[
             { value: "200+", label: "Lives Transformed" },
-            { value: "10+",  label: "Years Experience"  },
-            { value: "ICF",  label: "Certified Coach"   },
-            { value: "3",    label: "Core Programs"     },
+            { value: "10+", label: "Years Experience" },
+            { value: "ICF", label: "Certified Coach" },
+            { value: "3", label: "Core Programs" },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Mail, Phone, Linkedin, Twitter, Instagram, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, Linkedin, Youtube, Instagram, ArrowUpRight } from "lucide-react";
 
 const navLinks = [
   { href: "/services", label: "Services" },
@@ -15,7 +15,7 @@ const navLinks = [
 
 const socialLinks = [
   { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
+  { href: "https://www.youtube.com/@L2MCoaching", icon: Youtube, label: "YouTube" },
   { href: "https://instagram.com", icon: Instagram, label: "Instagram" },
 ];
 
