@@ -1,6 +1,11 @@
+import { Suspense } from "react";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import SmoothScroll from "@/components/smooth-scroll/SmoothScroll";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,6 +37,25 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.variable} ${cormorant.variable} antialiased`}>
+        {gaMeasurementId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}');
+              `}
+            </Script>
+            <Suspense fallback={null}>
+              <GoogleAnalytics gaId={gaMeasurementId} />
+            </Suspense>
+          </>
+        ) : null}
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
