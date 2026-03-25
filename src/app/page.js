@@ -6,6 +6,7 @@ import Problem from "@/components/problem/Problem";
 import Process from "@/components/process/Process";
 import Services from "@/components/services/Services";
 import Testimonials from "@/components/testimonials/Testimonials";
+import FeaturedVideo from "@/components/featured-video/FeaturedVideo";
 import About from "@/components/about/About";
 import LeadMagnet from "@/components/lead-magnet/LeadMagnet";
 import CTA from "@/components/cta/CTA";
@@ -23,6 +24,7 @@ export default function Home() {
         <Process />
         <Services />
         <Testimonials />
+        <FeaturedVideo />
         <About />
         <LeadMagnet />
         <CTA />

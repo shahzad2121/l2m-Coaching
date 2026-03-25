@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import ServicesHero from "@/components/services-page/ServicesHero";
+import ServicesLeadershipNudge from "@/components/services-page/ServicesLeadershipNudge";
 import ServicesSection from "@/components/services-page/ServicesSection";
 import ServicesCTA from "@/components/services-page/ServicesCTA";
 
@@ -16,6 +17,7 @@ export default function ServicesPage() {
       <Navbar />
       <main>
         <ServicesHero />
+        <ServicesLeadershipNudge />
         <ServicesSection />
         <ServicesCTA />
       </main>
