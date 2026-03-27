@@ -15,6 +15,7 @@ export default function ArticleHero({ post }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const isWixImage = post.coverImage?.includes("static.wixstatic.com");
 
   return (
     <section ref={ref} className="relative pt-24 overflow-hidden">
@@ -26,6 +27,7 @@ export default function ArticleHero({ post }) {
             alt={post.title}
             fill
             priority
+            unoptimized={isWixImage}
             sizes="100vw"
             className="object-cover"
           />

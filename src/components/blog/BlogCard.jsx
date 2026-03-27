@@ -11,6 +11,8 @@ import { formatDate } from "@/lib/blog-api";
  * Receives a single `post` object from the blog data layer.
  */
 export default function BlogCard({ post, priority = false }) {
+  const isWixImage = post.coverImage?.includes("static.wixstatic.com");
+
   return (
     <motion.article
       whileHover={{ y: -5 }}
@@ -24,6 +26,7 @@ export default function BlogCard({ post, priority = false }) {
           alt={post.title}
           fill
           priority={priority}
+          unoptimized={isWixImage}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
         />

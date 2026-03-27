@@ -1,22 +1,66 @@
-/**
- * Blog Data Access Layer
- * ─────────────────────
- * All blog data fetching is isolated here.
- *
- * To migrate from local data to an API/CMS (Sanity, Contentful, etc.),
- * replace the implementations below with fetch() calls. No consuming
- * component or page needs to change — only this file.
- *
- * All functions are async to match the future API contract.
- */
+import { fetchWixBlogPosts, fetchWixPostBySlug } from "@/lib/wix";
+import { draftJsToHtml } from "@/lib/wix-content";
 
-import { blogs } from "@/data/blogs";
+/**
+ * Internal helper: map a raw Wix blog post into the shape
+ * expected by the existing UI components.
+ */
+function mapWixPostToBlog(post) {
+  if (!post) return null;
+
+  const coverImage =
+    post.media?.wixMedia?.image?.url ??
+    "https://static.wixstatic.com/media/78d045_bd3b500c853c4af4a99079daf3ac4a2a~mv2.jpg";
+
+  const date = post.firstPublishedDate || post.lastPublishedDate || null;
+
+  const readTime =
+    typeof post.minutesToRead === "number" && post.minutesToRead > 0
+      ? `${post.minutesToRead} min read`
+      : null;
+
+  // Simple, brand-consistent defaults for fields Wix doesn't provide directly.
+  const categoryFromHashtag =
+    Array.isArray(post.hashtags) && post.hashtags.length > 0
+      ? String(post.hashtags[0])
+      : "Insights";
+
+  const safeExcerpt = post.excerpt ?? "";
+  const draftSource =
+    post.content ??
+    post.richContent ??
+    post.contentData ??
+    post?.content?.text ??
+    null;
+  const draftHtml = draftSource ? draftJsToHtml(draftSource) : "";
+  const fallbackContent = safeExcerpt
+    ? `<p>${safeExcerpt
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")}</p>`
+    : "<p></p>";
+
+  return {
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    coverImage,
+    date,
+    readTime,
+    author: "Lloyd Munyaviri",
+    category: categoryFromHashtag,
+    featured: Boolean(post.featured),
+    content: draftHtml || fallbackContent,
+  };
+}
 
 /**
  * Returns all blog posts, sorted newest first.
  */
 export async function getAllBlogs() {
-  return [...blogs].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const wixPosts = await fetchWixBlogPosts();
+  const mapped = wixPosts.map(mapWixPostToBlog).filter(Boolean);
+  return mapped.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
 /**
@@ -25,6 +69,7 @@ export async function getAllBlogs() {
  */
 export async function getFeaturedBlog() {
   const sorted = await getAllBlogs();
+  if (!sorted.length) return null;
   return sorted.find((b) => b.featured) ?? sorted[0];
 }
 
@@ -33,6 +78,8 @@ export async function getFeaturedBlog() {
  */
 export async function getNonFeaturedBlogs() {
   const [all, featured] = await Promise.all([getAllBlogs(), getFeaturedBlog()]);
+  if (!all.length) return [];
+  if (!featured) return all;
   return all.filter((b) => b.slug !== featured.slug);
 }
 
@@ -41,6 +88,11 @@ export async function getNonFeaturedBlogs() {
  * Returns null if no post matches — caller should invoke notFound().
  */
 export async function getBlogBySlug(slug) {
+  // Prefer a direct lookup, but fall back to list-based mapping
+  // in case the detail endpoint is not available.
+  const wixPost = await fetchWixPostBySlug(slug);
+  if (wixPost) return mapWixPostToBlog(wixPost);
+
   const all = await getAllBlogs();
   return all.find((b) => b.slug === slug) ?? null;
 }
@@ -66,6 +118,7 @@ export async function getRelatedBlogs(currentSlug, limit = 3) {
 
 /**
  * Returns all slugs — used for generateStaticParams in [slug]/page.js.
+ * Uses the mapped blog list so routing stays in sync with the index.
  */
 export async function getAllBlogSlugs() {
   const all = await getAllBlogs();

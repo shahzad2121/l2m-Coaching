@@ -12,6 +12,7 @@ import { formatDate } from "@/lib/blog-api";
  */
 export default function FeaturedPost({ post }) {
   if (!post) return null;
+  const isWixImage = post.coverImage?.includes("static.wixstatic.com");
 
   return (
     <section className="py-12 lg:py-16 bg-background">
@@ -40,6 +41,7 @@ export default function FeaturedPost({ post }) {
                   alt={post.title}
                   fill
                   priority
+                  unoptimized={isWixImage}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                 />
