@@ -3,6 +3,7 @@ import Footer from "@/components/footer/Footer";
 import ServicesHero from "@/components/services-page/ServicesHero";
 import ServicesLeadershipNudge from "@/components/services-page/ServicesLeadershipNudge";
 import ServicesSection from "@/components/services-page/ServicesSection";
+import TeenProgrammeFlipbook from "@/components/services-page/TeenProgrammeFlipbook";
 import ServicesCTA from "@/components/services-page/ServicesCTA";
 
 export const metadata = {
@@ -19,6 +20,7 @@ export default function ServicesPage() {
         <ServicesHero />
         <ServicesLeadershipNudge />
         <ServicesSection />
+        <TeenProgrammeFlipbook />
         <ServicesCTA />
       </main>
       <Footer />
