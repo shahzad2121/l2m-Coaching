@@ -26,6 +26,10 @@ export const metadata = {
   description:
     "Expert coaching and mentoring by Lloyd Munyaviri. Helping leaders, parents, and teens unlock their full potential through proven coaching frameworks.",
   keywords: "coaching, mentoring, leadership coaching, life coaching, executive coaching, Lloyd Munyaviri, L2M Coaching",
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: "/favicon.png",
+  },
   openGraph: {
     title: "L2M Coaching & Mentoring",
     description: "Coaching Leaders, Parents & Teens to Unlock Confidence, Clarity & Connection.",
